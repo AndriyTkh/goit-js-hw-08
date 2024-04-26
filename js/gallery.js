@@ -101,17 +101,19 @@ ImgNodes.forEach((element) => {
 
 const modal = basicLightbox.create(
   `<div class="modal">
-        <img
-          class="full-image"
-          src = ""
-          alt = ""
-        />
-    </div>`
+    <img class="full-image" src="" alt="" />
+  </div>`
 );
 
 function showModal(target) {
-  let targetImage = document.querySelector(".full-image");
-  console.log(targetImage);
-
   modal.show();
+
+  const targetImage = document.querySelector(".full-image");
+  targetImage.src = target.dataset.source;
+  targetImage.alt = target.alt;
+
+  console.log(modal);
+  targetImage.addEventListener("click", (event) => {
+    modal.close();
+  });
 }
