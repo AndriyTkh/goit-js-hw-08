@@ -66,23 +66,14 @@ const images = [
   },
 ];
 
-const modal = basicLightbox.create(`
-    <div class="modal">
-        <img
-            class="modal-image"
-            src= ${element.preview}
-            data-source= ${element.original}
-            alt= ${element.description}
-        />
-    </div>
-`);
+/* Setting responsive gallery */
 
 const gallery = document.querySelector(".gallery");
-let newCode = "";
+let galleryCode = "";
 
 images.forEach((element) => {
-  newCode += `<li class="gallery-item">
-  <a class="gallery-link" href="large-image.jpg">
+  galleryCode += `<li class="gallery-item">
+  <a class="gallery-link" href="">
     <img
       class="gallery-image"
       src= ${element.preview}
@@ -93,13 +84,34 @@ images.forEach((element) => {
 </li>`;
 });
 
-ImgNodes = document.querySelectorAll(".gallery-image");
+gallery.innerHTML = galleryCode;
+
+/* Adding event listener */
+
+const ImgNodes = document.querySelectorAll(".gallery-image");
 ImgNodes.forEach((element) => {
   element.addEventListener("click", (event) => {
-    event.stopPropagation();
+    event.preventDefault();
 
-    modal.show();
+    showModal(event.target);
   });
 });
 
-gallery.innerHTML = newCode;
+/* Modal handler */
+
+const modal = basicLightbox.create(
+  `<div class="modal">
+        <img
+          class="full-image"
+          src = ""
+          alt = ""
+        />
+    </div>`
+);
+
+function showModal(target) {
+  let targetImage = document.querySelector(".full-image");
+  console.log(targetImage);
+
+  modal.show();
+}
