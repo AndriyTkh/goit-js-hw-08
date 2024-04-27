@@ -88,13 +88,10 @@ gallery.innerHTML = galleryCode;
 
 /* Adding event listener */
 
-const ImgNodes = document.querySelectorAll(".gallery-image");
-ImgNodes.forEach((element) => {
-  element.addEventListener("click", (event) => {
-    event.preventDefault();
+gallery.addEventListener("click", (event) => {
+  event.preventDefault();
 
-    showModal(event.target);
-  });
+  showModal(event.target);
 });
 
 /* Modal handler */
@@ -112,7 +109,6 @@ function showModal(target) {
   targetImage.src = target.dataset.source;
   targetImage.alt = target.alt;
 
-  console.log(modal);
   targetImage.addEventListener("click", (event) => {
     modal.close();
   });
